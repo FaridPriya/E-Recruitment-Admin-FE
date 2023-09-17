@@ -37,7 +37,8 @@ import {
 } from '@coreui/angular';
 
 import { IconModule, IconSetService } from '@coreui/icons-angular';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AppInterceptor } from './services/app.interceptor';
 
 const APP_CONTAINERS = [
   DefaultFooterComponent,
@@ -77,6 +78,12 @@ const APP_CONTAINERS = [
     HttpClientModule
   ],
   providers: [
+    // AppInterceptor,
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: AppInterceptor,
+    //   multi: true
+    // },
     {
       provide: LocationStrategy,
       useClass: HashLocationStrategy

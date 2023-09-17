@@ -4,6 +4,8 @@ import { LOCAL_STORAGE_NAME } from '../environments/const';
 import { map, tap, catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
+import { AppInterceptor } from './app.interceptor';
+import { Router } from '@angular/router';
 
 
 export abstract class AbstractMasterRestService {
@@ -22,6 +24,10 @@ export abstract class AbstractMasterRestService {
     };
 }
 
+
+/** ***************************************************************************
+* ACCOUNT SERVICE
+******************************************************************************/
 @Injectable({
     providedIn: 'root'
 })
@@ -33,5 +39,25 @@ export class AccountService extends AbstractMasterRestService {
     login(data: any): Observable<any> {
         const body = JSON.stringify(data);
         return this.http.post<any>(this.actionUrl + '/login', body, this.httpOptions);
+    }
+}
+
+/** ***************************************************************************
+* Applicant Specification SERVICE
+******************************************************************************/
+@Injectable({
+    providedIn: 'root'
+})
+export class ApplicantSpecificationService extends AbstractMasterRestService {
+    constructor(http: HttpClient) {
+        super(http, environment.Url + 'ApplicantSpecification');
+    }
+
+    getData(): Observable<any> {
+        return this.http.get<any>(this.actionUrl, this.httpOptions);
+    }
+
+    delete(id: string): Observable<any> {
+        return this.http.delete<any>(this.actionUrl + `/${id}`, this.httpOptions);
     }
 }
