@@ -1,10 +1,12 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
-import { ReactiveFormsModule } from "@angular/forms";
-import { ButtonModule, CardModule, GridModule, TableModule } from "@coreui/angular";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ButtonModule, CardModule, FormModule, GridModule, TableModule, BadgeModule, AlertModule } from "@coreui/angular";
 import { IconModule } from "@coreui/icons-angular";
 import { RequirementComponent } from "./components/requirement-list.component";
 import { RequirementRoutingModule } from "./requirement-routing.module";
+import { RequirementCreateComponent } from "./components/requirement-create.component";
+
 
 @NgModule({
     imports: [
@@ -14,9 +16,17 @@ import { RequirementRoutingModule } from "./requirement-routing.module";
         GridModule,
         CommonModule,
         IconModule,
-        ButtonModule
+        ButtonModule,
+        FormModule,
+        BadgeModule,
+        AlertModule,
+        FormsModule, 
+        ReactiveFormsModule
     ],
-    declarations: [RequirementComponent]
+    declarations: [
+        RequirementComponent, 
+        RequirementCreateComponent
+    ]
 })
 
 export class RequirementModule {

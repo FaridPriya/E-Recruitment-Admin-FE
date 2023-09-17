@@ -1,0 +1,53 @@
+<c-alert [(visible)]="visible"
+         [dismissible]="dismissible"
+         color="danger"
+         fade
+         *ngIf="visible">
+  {{errorMessage}}
+</c-alert>
+
+<c-row ngPreserveWhitespaces>
+<form cForm name="myForm" [formGroup]="attachedForm" (ngSubmit)="_submitForm()">
+    <c-col xs="12">
+        <c-card class="mb-4">
+            <c-card-body>
+                <div class="mb-3">
+                    <label for="Name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="Name" placeholder="Name" formControlName="Name" required>
+                    <label
+                      *ngIf="getFormControl('Name')!.invalid && (getFormControl('Name')!.dirty ||getFormControl('Name')!.touched)"
+                      class="text-danger">
+                      Field must be fill
+                    </label>
+                  </div>
+                  <div class="mb-3">
+                    <label for="Description" class="form-label">Description</label>
+                    <textarea class="form-control" id="Description" rows="2" formControlName="Description"></textarea>
+                  </div>
+            </c-card-body>
+        </c-card>
+    </c-col>
+    <c-col xs="12">
+        <c-card class="mb-4">
+            <c-card-header>
+                <strong>Specification</strong>
+            </c-card-header>
+            <c-card-body>
+                <label for="Spec" class="form-label">Specification List</label>
+                <input type="text" class="form-control" id="Spec" placeholder="Spec" [(ngModel)]="specificationItem" (change)="setItemSpec()"
+                formControlName="Item">
+                <c-container class="mt-3">
+                    <c-col >
+                        <h4><c-badge *ngFor="let item of listSpecificationItem; index as i" color="secondary" class="position-relative mx-2" 
+                            >{{item.Name}}  <button (click)="deleteItemSpec(i)" cButtonClose ></button></c-badge></h4>
+                    </c-col>
+                </c-container>
+            </c-card-body>
+        </c-card>
+    </c-col>
+
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-2">
+        <button cButton color="primary" class="me-md-2" (click)="save()">Save</button>
+    </div>
+</form>
+</c-row>

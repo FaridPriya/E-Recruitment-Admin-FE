@@ -1,4 +1,5 @@
 import { RequirementComponent } from "./components/requirement-list.component";
+import { RequirementCreateComponent } from "./components/requirement-create.component";
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from "@angular/core";
 
@@ -9,6 +10,13 @@ const routes: Routes = [
       component: RequirementComponent,
       data: {
         title: 'Requirement'
+      }
+    },
+    {
+      path: 'create',
+      component: RequirementCreateComponent,
+      data: {
+        title: 'Requirement Create'
       }
     }
   ];

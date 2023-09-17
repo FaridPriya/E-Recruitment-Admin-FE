@@ -60,4 +60,9 @@ export class ApplicantSpecificationService extends AbstractMasterRestService {
     delete(id: string): Observable<any> {
         return this.http.delete<any>(this.actionUrl + `/${id}`, this.httpOptions);
     }
+
+    postData(data: any): Observable<any> {
+        const body = JSON.stringify(data);
+        return this.http.post<any>(this.actionUrl, body, this.httpOptions);
+    }
 }

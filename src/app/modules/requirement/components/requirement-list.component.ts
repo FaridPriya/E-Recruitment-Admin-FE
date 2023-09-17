@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { ApplicantSpecificationService } from 'src/app/services/app.service';
 import { freeSet } from '@coreui/icons';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
     selector: 'app-requirement-list',
@@ -15,7 +15,8 @@ export class RequirementComponent implements OnInit {
 
     constructor(
         private applicantSpecificationService: ApplicantSpecificationService,
-        private router: Router
+        private router: Router,
+        private activatedRoute: ActivatedRoute
         ) { }
 
     ngOnInit(){
@@ -48,6 +49,10 @@ export class RequirementComponent implements OnInit {
             }
             console.log(error);
         })
+    }
+
+    create() {
+        this.router.navigate(['create'], { relativeTo: this.activatedRoute });
     }
 
 }
