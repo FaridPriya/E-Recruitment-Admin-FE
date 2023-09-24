@@ -1,0 +1,32 @@
+<div class="d-grid gap-2 d-md-flex justify-content-md-end mb-2">
+    <button cButton color="primary" class="me-md-2" (click)="create()">Add</button>
+</div>
+<c-row ngPreserveWhitespaces>
+    <c-col xs="12">
+        <c-card class="mb-4">
+            <c-card-body>
+                <table cTable hover>
+                    <thead>
+                    <tr>
+                      <th scope="col">No</th>
+                      <th scope="col">Name</th>
+                      <!-- <th scope="col">Type</th> -->
+                      <th scope="col">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of listJob; let i = index">
+                            <td>{{i + 1}}</td>
+                            <td (click)="detail(item.Id)">{{item.Name}}</td>
+                            <!-- <td><c-badge [color]="item.TypeName == 'Skill'? 'info': item.TypeName == 'Experience' ? 'warning' :
+                                'success'">{{item.TypeName}}</c-badge></td> -->
+                            <td (click)="deleteRequirement(item.Id)"><svg [cIcon]="icons.cilTrash" title="icon trash" size="xl"></svg></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </c-card-body>
+        </c-card>
+    </c-col>
+</c-row>
+
+

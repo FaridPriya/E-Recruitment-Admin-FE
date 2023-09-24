@@ -15,6 +15,11 @@ export const navItems: INavData[] = [
     url: '/requirement',
     iconComponent: { name: 'cil-speedometer' }
   },
+  {
+    name: 'Job Vacancys',
+    url: '/jobvacancy',
+    iconComponent: { name: 'cil-star' }
+  },
   // {
   //   title: true,
   //   name: 'Theme'
