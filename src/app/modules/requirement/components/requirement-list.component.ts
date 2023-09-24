@@ -55,4 +55,8 @@ export class RequirementComponent implements OnInit {
         this.router.navigate(['create'], { relativeTo: this.activatedRoute });
     }
 
+    detail(id: string) {
+        this.router.navigate([id], { relativeTo: this.activatedRoute });
+    }
+
 }

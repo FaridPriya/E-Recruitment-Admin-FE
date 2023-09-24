@@ -57,6 +57,10 @@ export class ApplicantSpecificationService extends AbstractMasterRestService {
         return this.http.get<any>(this.actionUrl, this.httpOptions);
     }
 
+    getDataById(id: string): Observable<any> {
+        return this.http.get<any>(this.actionUrl + `/${id}`, this.httpOptions);
+    }
+
     delete(id: string): Observable<any> {
         return this.http.delete<any>(this.actionUrl + `/${id}`, this.httpOptions);
     }
@@ -64,5 +68,10 @@ export class ApplicantSpecificationService extends AbstractMasterRestService {
     postData(data: any): Observable<any> {
         const body = JSON.stringify(data);
         return this.http.post<any>(this.actionUrl, body, this.httpOptions);
+    }
+
+    updateData(data: any, id: string): Observable<any> {
+        const body = JSON.stringify(data);
+        return this.http.put<any>(this.actionUrl + `/${id}`, body, this.httpOptions);
     }
 }

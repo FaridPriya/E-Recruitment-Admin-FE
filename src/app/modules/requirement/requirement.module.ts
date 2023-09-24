@@ -6,6 +6,7 @@ import { IconModule } from "@coreui/icons-angular";
 import { RequirementComponent } from "./components/requirement-list.component";
 import { RequirementRoutingModule } from "./requirement-routing.module";
 import { RequirementCreateComponent } from "./components/requirement-create.component";
+import { RequirementDetailComponent } from "./components/requirement-detail.component";
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { RequirementCreateComponent } from "./components/requirement-create.comp
     ],
     declarations: [
         RequirementComponent, 
-        RequirementCreateComponent
+        RequirementCreateComponent,
+        RequirementDetailComponent
     ]
 })
 

@@ -24,15 +24,15 @@
                     <label for="TypeLabel" class="form-label">Type</label>
                     <div name="TypeLabel" >
                         <c-form-check inline>
-                            <input cFormCheckInput checked id="skill" name="Type" type="radio" formControlName="Type" [value]="0"/>
+                            <input cFormCheckInput [checked]="type == 'Skill'" id="skill" name="Type" type="radio" formControlName="Type" [value]="0"/>
                             <label cFormCheckLabel for="skill">Skill</label>
                         </c-form-check>
                         <c-form-check inline>
-                            <input cFormCheckInput id="experience" name="Type" type="radio" formControlName="Type" [value]="1"/>
+                            <input cFormCheckInput [checked]="type == 'experience'" id="experience" name="Type" type="radio" formControlName="Type" [value]="1"/>
                             <label cFormCheckLabel for="experience">Experience</label>
                         </c-form-check>
                         <c-form-check inline>
-                            <input cFormCheckInput id="education" name="Type" type="radio" formControlName="Type" [value]="2"/>
+                            <input cFormCheckInput [checked]="type == 'Education'" id="education" name="Type" type="radio" formControlName="Type" [value]="2"/>
                             <label cFormCheckLabel for="education">Education</label>
                         </c-form-check>
                     </div>
@@ -60,8 +60,8 @@
                 formControlName="Item">
                 <c-container class="mt-3">
                     <c-col >
-                        <h4><c-badge *ngFor="let item of listSpecificationItem; index as i" color="secondary" class="position-relative mx-2" 
-                            >{{item.Name}}  <button (click)="deleteItemSpec(i)" cButtonClose ></button></c-badge></h4>
+                        <h4><c-badge *ngFor="let item of listSpecificationItem; index as i" [color]="item.ApplicantSpecificationId != '' ? 'info' : 'secondary'" class="position-relative mx-2" 
+                            >{{item.Name}}  <button (click)="deleteItemSpec(i)" cButtonClose style="color:white"></button></c-badge></h4>
                     </c-col>
                 </c-container>
             </c-card-body>

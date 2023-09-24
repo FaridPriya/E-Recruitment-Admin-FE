@@ -10,13 +10,16 @@
                     <tr>
                       <th scope="col">No</th>
                       <th scope="col">Name</th>
+                      <th scope="col">Type</th>
                       <th scope="col">Action</th>
                     </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let item of listSpecification; let i = index">
                             <td>{{i + 1}}</td>
-                            <td>{{item.Name}}</td>
+                            <td (click)="detail(item.Id)">{{item.Name}}</td>
+                            <td><c-badge [color]="item.TypeName == 'Skill'? 'info': item.TypeName == 'Experience' ? 'warning' :
+                                'success'">{{item.TypeName}}</c-badge></td>
                             <td (click)="deleteRequirement(item.Id)"><svg [cIcon]="icons.cilTrash" title="icon trash" size="xl"></svg></td>
                         </tr>
                     </tbody>

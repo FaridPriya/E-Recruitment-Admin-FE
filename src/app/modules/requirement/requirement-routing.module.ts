@@ -1,5 +1,6 @@
 import { RequirementComponent } from "./components/requirement-list.component";
 import { RequirementCreateComponent } from "./components/requirement-create.component";
+import { RequirementDetailComponent } from "./components/requirement-detail.component";
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from "@angular/core";
 
@@ -18,6 +19,10 @@ const routes: Routes = [
       data: {
         title: 'Requirement Create'
       }
+    },
+    {
+      path: ':id',
+      component: RequirementDetailComponent
     }
   ];
   
