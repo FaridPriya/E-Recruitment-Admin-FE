@@ -40,6 +40,7 @@ import {
 import { IconModule, IconSetService } from '@coreui/icons-angular';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppInterceptor } from './services/app.interceptor';
+import { LoadingInterceptor } from './services/loading.interceptor';
 
 const APP_CONTAINERS = [
   DefaultFooterComponent,
@@ -80,12 +81,11 @@ const APP_CONTAINERS = [
     SpinnerModule
   ],
   providers: [
-    // AppInterceptor,
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: AppInterceptor,
-    //   multi: true
-    // },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoadingInterceptor,
+      multi: true,
+    },
     {
       provide: LocationStrategy,
       useClass: HashLocationStrategy
