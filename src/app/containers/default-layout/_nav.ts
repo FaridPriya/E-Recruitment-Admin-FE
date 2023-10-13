@@ -11,12 +11,17 @@ export const navItems: INavData[] = [
     }
   },
   {
+    name: 'Candidate',
+    url: '/candidate',
+    iconComponent: { name: 'cil-star' }
+  },
+  {
     name: 'Requirement',
     url: '/requirement',
     iconComponent: { name: 'cil-speedometer' }
   },
   {
-    name: 'Job Vacancys',
+    name: 'Job Vacancy',
     url: '/jobvacancy',
     iconComponent: { name: 'cil-star' }
   },
