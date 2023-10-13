@@ -5,7 +5,7 @@ import { ButtonModule, CardModule, FormModule, GridModule, TableModule, BadgeMod
 import { IconModule } from "@coreui/icons-angular";
 import { JobRoutingModule } from "./job-routing.module";
 import { JobListComponent } from "./components/job-list.component";
-
+import { JobCreateComponent } from "./components/job-create.component";
 
 
 @NgModule({
@@ -24,7 +24,8 @@ import { JobListComponent } from "./components/job-list.component";
         ReactiveFormsModule
     ],
     declarations: [
-        JobListComponent
+        JobListComponent,
+        JobCreateComponent
     ]
 })
 

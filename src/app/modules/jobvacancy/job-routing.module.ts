@@ -1,4 +1,5 @@
 import { JobListComponent } from "./components/job-list.component";
+import { JobCreateComponent } from "./components/job-create.component";
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from "@angular/core";
 
@@ -10,14 +11,14 @@ const routes: Routes = [
       data: {
         title: 'Job Vacancy'
       }
-    }
-    // {
-    //   path: 'create',
-    //   component: RequirementCreateComponent,
-    //   data: {
-    //     title: 'Requirement Create'
-    //   }
-    // },
+    },
+    {
+      path: 'create',
+      component: JobCreateComponent,
+      data: {
+        title: 'Job Vacancy Create'
+      }
+    },
     // {
     //   path: ':id',
     //   component: RequirementDetailComponent

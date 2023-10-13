@@ -57,6 +57,10 @@ export class ApplicantSpecificationService extends AbstractMasterRestService {
         return this.http.get<any>(this.actionUrl, this.httpOptions);
     }
 
+    getDataWithItem(): Observable<any> {
+        return this.http.get<any>(this.actionUrl+'/AllWithItem', this.httpOptions);
+    }
+
     getDataById(id: string): Observable<any> {
         return this.http.get<any>(this.actionUrl + `/${id}`, this.httpOptions);
     }
