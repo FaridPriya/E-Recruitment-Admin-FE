@@ -51,8 +51,8 @@
                     </c-col>
                   </div>
                   <div class="mb-3">
-                    <label for="Description" class="form-label">Cv/Resume</label>
-                    <input cFormControl id="formFile" type="file" />
+                    <label for="file" class="form-label">Cv/Resume</label>
+                    <input cFormControl id="file" type="file" accept=".pdf" (change)="onFileChange($event)"/>
                   </div>
             </c-card-body>
         </c-card>

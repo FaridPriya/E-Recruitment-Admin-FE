@@ -23,7 +23,7 @@
                             <td (click)="detail(item.Id)">{{item.Name}}</td>
                             <td>{{item.JobVacancyName}}</td>
                             <td>{{item.Email}}</td>
-                            <td><c-badge [color]="item.AIScreeningStatus == 'Pending'? 'info': item.TypeName == 'Done' ? 'success' :
+                            <td><c-badge [color]="item.AIScreeningStatus == 'Pending'? 'info': item.AIScreeningStatus == 'Done' ? 'success' :
                                 'danger'">{{item.AIScreeningStatus}}</c-badge></td>
                             <td (click)="deleteCandidate(item.Id)"><svg [cIcon]="icons.cilTrash" title="icon trash" size="xl"></svg></td>
                         </tr>

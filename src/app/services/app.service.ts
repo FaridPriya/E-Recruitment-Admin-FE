@@ -22,6 +22,12 @@ export abstract class AbstractMasterRestService {
             'Authorization':  `bearer ` + localStorage.getItem(LOCAL_STORAGE_NAME.ACCESS_TOKEN)
         })
     };
+
+    httpOptionsUpload = {
+        headers: new HttpHeaders({
+            'Authorization':  `bearer ` + localStorage.getItem(LOCAL_STORAGE_NAME.ACCESS_TOKEN)
+        })
+    };
 }
 
 
@@ -146,5 +152,23 @@ export class CandidateService extends AbstractMasterRestService {
     updateData(data: any, id: string): Observable<any> {
         const body = JSON.stringify(data);
         return this.http.put<any>(this.actionUrl + `/${id}`, body, this.httpOptions);
+    }
+}
+
+/** ***************************************************************************
+* EDEN AI SERVICE
+******************************************************************************/
+@Injectable({
+    providedIn: 'root'
+})
+export class EdenAiService extends AbstractMasterRestService {
+    constructor(http: HttpClient) {
+        super(http, environment.Url + 'EdenAi');
+    }
+
+    screeningCv(data: any, id: string): Observable<any> {
+        const formData = new FormData();
+        formData.append('pdfFile', data);
+        return this.http.post<any>(`${this.actionUrl}/ScreeningCV/${id}`, formData, this.httpOptionsUpload);
     }
 }

@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { CandidateService, JobVacancyService } from 'src/app/services/app.service';
+import { CandidateService, JobVacancyService, EdenAiService } from 'src/app/services/app.service';
 import { freeSet } from '@coreui/icons';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -23,11 +23,13 @@ export class CandidateCreateComponent implements OnInit {
     candidateDTO:CandidateDTO = new CandidateDTO();
     selectedJob!: string;
     formValidationType = FORM_VALIDATION;
+    isScreeningCv = false;
 
     constructor(
         private fb: FormBuilder,
         private candidateService: CandidateService,
         private jobVacancyService: JobVacancyService,
+        private edenAiService: EdenAiService,
         private router: Router,
         private activatedRoute: ActivatedRoute
     ) { }
@@ -65,7 +67,8 @@ export class CandidateCreateComponent implements OnInit {
           Name: ['', [Validators.required]],
           JobId:['',[Validators.required]],
           Phone:['',[Validators.required, Validators.pattern(/^(\+62|62)?[\s-]?0?8[1-9]{1}\d{1}[\s-]?\d{4}[\s-]?\d{2,5}$/)]],
-          Email:['',[Validators.required, Validators.email]]
+          Email:['',[Validators.required, Validators.email]],
+          File: [''],
         });
     }
 
@@ -86,12 +89,26 @@ export class CandidateCreateComponent implements OnInit {
         this.candidateDTO.IdJobVacancy = this.selectedJob;
     }
 
+    onFileChange(event: any) {
+        if (event.target.files.length > 0) {
+            const file = event.target.files[0];
+            this.attachedForm.get('File')!.setValue(file);
+            this.isScreeningCv = true;
+        }else{
+            this.isScreeningCv = false;
+        }
+    }
+
     save(){
         this._submitForm();
         if (this.attachedForm.valid) {
             this.generateDataSend();
             this.candidateService.postData(this.candidateDTO).subscribe(data => {
-                this.router.navigate(['../'], { relativeTo: this.activatedRoute });
+                if(this.isScreeningCv) {
+                    this.screeningCv(data.Id)
+                }else{
+                    this.router.navigate(['../'], { relativeTo: this.activatedRoute });
+                }
               }, error => {
                 console.log(error);
                 if (error != null) {
@@ -103,6 +120,21 @@ export class CandidateCreateComponent implements OnInit {
                 this.showError(error.error);
             })
         }
+    }
+
+    screeningCv(id:string) {
+        this.edenAiService.screeningCv(this.attachedForm.value.File, id).subscribe(data => {
+            this.router.navigate(['../'], { relativeTo: this.activatedRoute });
+          }, error => {
+            console.log(error);
+            if (error != null) {
+                const code = error.status;
+                if (code === 401) {
+                    this.router.navigateByUrl(`login`);
+                }
+            }
+            this.showError(error.error);
+        })
     }
 
     showError(msg: string){
