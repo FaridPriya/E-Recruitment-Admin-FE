@@ -1,0 +1,65 @@
+<c-alert [(visible)]="visible"
+         [dismissible]="dismissible"
+         color="danger"
+         fade
+         *ngIf="visible">
+  {{errorMessage}}
+</c-alert>
+
+<c-row ngPreserveWhitespaces>
+<form cForm name="myForm" [formGroup]="attachedForm" (ngSubmit)="_submitForm()" class="needs-validation" ngNativeValidate>
+    <c-col xs="12">
+        <c-card class="mb-4">
+            <c-card-body>
+                <div class="mb-3">
+                    <label for="Name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="Name" placeholder="Name" formControlName="Name" required>
+                    <c-col *ngFor="let validation of formValidationType.form">
+                        <label class="text-danger" *ngIf="
+                        getFormControl('Name')!.hasError(validation.type) && getFormControl('Name')!.invalid && (getFormControl('Name')!.dirty || getFormControl('Name')!.touched)
+                      "> {{ validation.message}}</label>
+                    </c-col>
+                    
+                  </div>
+                  <div class="mb-3">
+                    <label for="Description" class="form-label">Job Vacation</label>
+                    <select aria-label="Default select example" cSelect [(ngModel)]="selectedJob" formControlName="JobId">
+                        <option *ngFor="let item of listJob; index as i" [ngValue]="item.Id">{{item.Name}}</option>
+                    </select>
+                    <c-col *ngFor="let validation of formValidationType.form">
+                        <label class="text-danger" *ngIf="
+                        getFormControl('JobId')!.hasError(validation.type) && getFormControl('JobId')!.invalid && (getFormControl('JobId')!.dirty || getFormControl('JobId')!.touched)
+                      "> {{ validation.message}}</label>
+                    </c-col>
+                  </div>
+                  <div class="mb-3">
+                    <label for="Phone" class="form-label">Phone Number</label>
+                    <input type="text" class="form-control" id="Phone" placeholder="Phone" formControlName="Phone" required>
+                    <c-col *ngFor="let validation of formValidationType.form">
+                        <label class="text-danger" *ngIf="
+                        getFormControl('Phone')!.hasError(validation.type) && getFormControl('Phone')!.invalid && (getFormControl('Phone')!.dirty || getFormControl('Phone')!.touched)
+                      "> {{ validation.message}}</label>
+                    </c-col>
+                  </div>
+                  <div class="mb-3">
+                    <label for="Email" class="form-label">Email</label>
+                    <input type="text" class="form-control" id="Email" placeholder="Email" formControlName="Email" required>
+                    <c-col *ngFor="let validation of formValidationType.form">
+                        <label class="text-danger" *ngIf="
+                        getFormControl('Email')!.hasError(validation.type) && getFormControl('Email')!.invalid && (getFormControl('Email')!.dirty || getFormControl('Email')!.touched)
+                      "> {{ validation.message}}</label>
+                    </c-col>
+                  </div>
+                  <div class="mb-3">
+                    <label for="Description" class="form-label">Cv/Resume</label>
+                    <input cFormControl id="formFile" type="file" />
+                  </div>
+            </c-card-body>
+        </c-card>
+    </c-col>
+
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-2">
+        <button cButton color="primary" class="me-md-2" (click)="save()">Save</button>
+    </div>
+</form>
+</c-row>

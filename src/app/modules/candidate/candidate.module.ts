@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ButtonModule, CardModule, FormModule, GridModule, TableModule, BadgeModule, AlertModule, SpinnerModule } from "@coreui/angular";
 import { IconModule } from "@coreui/icons-angular";
 import { CandidateComponent } from "./components/candidate-list.component";
+import { CandidateCreateComponent } from "./components/candidate-create.component";
 import { CandidateRoutingModule } from "./candidate-routing.module";
 
 
@@ -24,7 +25,8 @@ import { CandidateRoutingModule } from "./candidate-routing.module";
         SpinnerModule
     ],
     declarations: [
-        CandidateComponent
+        CandidateComponent,
+        CandidateCreateComponent
     ]
 })
 

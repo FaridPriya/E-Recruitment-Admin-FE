@@ -1,4 +1,5 @@
 export class JobVacancyDTO{
+    Id!: string;
     Name!: string;
     Description!: string;
     ListRequirement: JobVacancyRequirementDTO[] = [];
