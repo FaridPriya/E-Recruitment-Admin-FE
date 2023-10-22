@@ -1,0 +1,82 @@
+<c-alert [(visible)]="visible"
+         [dismissible]="dismissible"
+         color="danger"
+         fade
+         *ngIf="visible">
+  {{errorMessage}}
+</c-alert>
+
+<c-row ngPreserveWhitespaces>
+<form cForm name="myForm" [formGroup]="attachedForm" (ngSubmit)="_submitForm()">
+    <c-col xs="12">
+        <c-card class="mb-4">
+            <c-card-body>
+                <div class="mb-3">
+                    <label for="Name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="Name" placeholder="Name" formControlName="Name" required>
+                    <c-col *ngFor="let validation of formValidationType.form">
+                        <label class="text-danger" *ngIf="
+                        getFormControl('Name')!.hasError(validation.type) && getFormControl('Name')!.invalid && (getFormControl('Name')!.dirty || getFormControl('Name')!.touched)
+                      "> {{ validation.message}}</label>
+                    </c-col>
+                  </div>
+                  <div class="mb-3">
+                    <label for="Description" class="form-label">Description</label>
+                    <textarea class="form-control" id="Description" rows="2" formControlName="Description"></textarea>
+                  </div>
+                  <div class="mb-3">
+                    <label for="question" class="form-label">Question</label>
+                    <!-- <input type="text" class="form-control" id="question" placeholder="Question" formControlName="Question" [(ngModel)]="question" (change)="setquestion()"> -->
+                    <c-input-group class="mb-3">
+                        <input aria-describedby="button-addon2"
+                        type="text" class="form-control" id="question" placeholder="Question" formControlName="Question" [(ngModel)]="question" (change)="setquestion()"
+                        />
+                        <button cButton color="success" id="button-addon2" type="button" variant="outline" (click)="setquestion()">
+                          Add
+                        </button>
+                      </c-input-group>
+                  </div>
+            </c-card-body>
+        </c-card>
+    </c-col>
+    <c-col xs="12">
+        <c-card class="mb-4">
+            <c-card-header>
+                <strong>Question</strong>
+            </c-card-header>
+            <c-card-body>
+                <table
+                    [hover]="true"
+                    [responsive]="true"
+                    [striped]="true"
+                    align="middle"
+                    cTable
+                    class="mb-0 border">
+                    <thead cTableColor="light">
+                        <th class="text-center question-no">No</th>
+                        <th class="question-fill">Question</th>
+                        <th class="text-right question-action">Action</th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of listQuestionItem; index as i">
+                            <td class="text-center">{{i + 1}}</td>
+                            <td>{{item.Question}}</td>
+                            <td>
+                                <c-row [xs]="2">
+                                    <c-col md="3" (click)="updateQuestion(i)"><svg [cIcon]="icons.cilPencil" title="icon pencil" size="lg" ></svg></c-col>
+                                    <c-col md="3" (click)="deleteQuestion(i)"><svg [cIcon]="icons.cilTrash" title="icon trash" size="lg" ></svg></c-col>
+                                </c-row>
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </c-card-body>
+        </c-card>
+    </c-col>
+
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-2">
+        <button cButton color="primary" class="me-md-2" [disabled]="loadingService.isLoading" (click)="save()">Save</button>
+    </div>
+</form>
+</c-row>

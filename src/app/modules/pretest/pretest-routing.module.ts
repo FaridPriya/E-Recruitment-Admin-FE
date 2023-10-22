@@ -2,6 +2,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from "@angular/core";
 import { PretestComponent } from './components/pretest-list.component';
 import { PretestCreateComponent } from './components/pretest-create.component';
+import { PretestDetailComponent } from './components/pretest-detail.component';
 
 
 
@@ -19,6 +20,10 @@ const routes: Routes = [
       data: {
         title: 'Pre-test Create'
       }
+    },
+    {
+      path: ':id',
+      component: PretestDetailComponent
     }
   ];
   

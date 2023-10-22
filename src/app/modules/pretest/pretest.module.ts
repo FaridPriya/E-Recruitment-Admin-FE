@@ -6,6 +6,7 @@ import { IconModule } from "@coreui/icons-angular";
 import { PretestComponent } from "./components/pretest-list.component";
 import { PretestRoutingModule } from "./pretest-routing.module";
 import { PretestCreateComponent } from './components/pretest-create.component';
+import { PretestDetailComponent } from './components/pretest-detail.component';
 
 
 
@@ -26,7 +27,8 @@ import { PretestCreateComponent } from './components/pretest-create.component';
     ],
     declarations: [
         PretestComponent,
-        PretestCreateComponent
+        PretestCreateComponent,
+        PretestDetailComponent
     ]
 })
 
