@@ -5,6 +5,8 @@ import { ButtonModule, CardModule, FormModule, GridModule, TableModule, BadgeMod
 import { IconModule } from "@coreui/icons-angular";
 import { PretestComponent } from "./components/pretest-list.component";
 import { PretestRoutingModule } from "./pretest-routing.module";
+import { PretestCreateComponent } from './components/pretest-create.component';
+
 
 
 @NgModule({
@@ -23,7 +25,8 @@ import { PretestRoutingModule } from "./pretest-routing.module";
         ReactiveFormsModule
     ],
     declarations: [
-        PretestComponent
+        PretestComponent,
+        PretestCreateComponent
     ]
 })
 
