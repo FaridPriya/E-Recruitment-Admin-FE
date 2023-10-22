@@ -5,6 +5,7 @@ import { ButtonModule, CardModule, FormModule, GridModule, TableModule, BadgeMod
 import { IconModule } from "@coreui/icons-angular";
 import { CandidateComponent } from "./components/candidate-list.component";
 import { CandidateCreateComponent } from "./components/candidate-create.component";
+import { CandidateDetailComponent } from "./components/candidate-detail.component";
 import { CandidateRoutingModule } from "./candidate-routing.module";
 
 
@@ -26,7 +27,8 @@ import { CandidateRoutingModule } from "./candidate-routing.module";
     ],
     declarations: [
         CandidateComponent,
-        CandidateCreateComponent
+        CandidateCreateComponent,
+        CandidateDetailComponent
     ]
 })
 

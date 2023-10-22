@@ -22,7 +22,7 @@
                     
                   </div>
                   <div class="mb-3">
-                    <label for="Description" class="form-label">Job Vacation</label>
+                    <label for="Description" class="form-label">Job Vacancy</label>
                     <select aria-label="Default select example" cSelect [(ngModel)]="selectedJob" formControlName="JobId">
                         <option *ngFor="let item of listJob; index as i" [ngValue]="item.Id">{{item.Name}}</option>
                     </select>

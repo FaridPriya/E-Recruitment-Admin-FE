@@ -1,5 +1,6 @@
 import { CandidateComponent } from "./components/candidate-list.component";
 import { CandidateCreateComponent } from "./components/candidate-create.component";
+import { CandidateDetailComponent } from "./components/candidate-detail.component";
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from "@angular/core";
 
@@ -18,6 +19,10 @@ const routes: Routes = [
       data: {
         title: 'Candidate Create'
       }
+    },
+    {
+      path: ':id',
+      component: CandidateDetailComponent
     }
   ];
   

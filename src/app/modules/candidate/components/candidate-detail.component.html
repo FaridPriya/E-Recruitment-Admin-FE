@@ -1,0 +1,62 @@
+<div class="row">
+    <c-col>
+        <c-card class="mb-4">
+            <c-card-body>
+                <div class="mb-3">
+                    <h4 class="card-title mb-0">{{candidate.Name}}</h4>
+                    <div class="text-medium-emphasis">{{candidate.JobVacancyName}}</div>
+                </div>
+                <c-row>
+                    <c-col>
+                        <div class="fw-semibold">Email</div>
+                        <p>{{candidate.Email}}</p>
+                    </c-col>
+                    <c-col>
+                        <div class="fw-semibold">Phone Number</div>
+                        <p>{{candidate.NoHandphone}}</p>
+                    </c-col>
+                </c-row>
+                <c-row>
+                    <c-col>
+                        <div class="fw-semibold">AI Screening Status</div>
+                        <c-badge [color]="candidate.AIScreeningStatus == 'Pending'? 'info': candidate.AIScreeningStatus == 'Success' ? 'success' :
+                        'danger'">{{candidate.AIScreeningStatus}}</c-badge>
+                    </c-col>
+                    <c-col>
+                        <div class="fw-semibold">Apply date</div>
+                        <p>{{candidate.CreatedAt}}</p>
+                    </c-col>
+                </c-row>
+                <c-col>
+                    <div class="fw-semibold">Skill</div>
+                    <div *ngIf="!candidate.Skill">-</div>
+                    <div class="mb-1">
+                        <c-badge *ngFor="let item of candidate.Skill; index as i" [ngClass]="{'position-relative': true, 'mx-2': true, 'badge bg-info': item.AiPassed, 'badge bg-secondary': !item.AiPassed}">{{item.ApplicantItemName}}</c-badge>
+                    </div>
+                </c-col>
+                <c-col>
+                    <div class="fw-semibold">Experience</div>
+                    <div *ngIf="!candidate.Experience">-</div>
+                    <div class="mb-1">
+                        <c-badge *ngFor="let item of candidate.Experience; index as i" [ngClass]="{'position-relative': true, 'mx-2': true, 'badge bg-info': item.AiPassed, 'badge bg-secondary': !item.AiPassed}">{{item.ApplicantItemName}}</c-badge>
+                    </div>
+                </c-col>
+                <c-col>
+                    <div class="fw-semibold">Education</div>
+                    <div *ngIf="!candidate.Education">-</div>
+                    <div class="mb-1">
+                        <c-badge *ngFor="let item of candidate.Education; index as i" [ngClass]="{'position-relative': true, 'mx-2': true, 'badge bg-info': item.AiPassed, 'badge bg-secondary': !item.AiPassed}">{{item.ApplicantItemName}}</c-badge>
+                    </div>
+                </c-col>
+            </c-card-body>
+        </c-card>
+    </c-col>
+
+    <c-col>
+        <c-card class="mb-4">
+            <c-card-body>
+            </c-card-body>
+        </c-card>
+    </c-col>
+    
+</div>
