@@ -37,6 +37,10 @@ const routes: Routes = [
         loadChildren: () => import('./modules/candidate/candidate.module').then((m) => m.CandidateModule)
       },
       {
+        path: 'pretest',
+        loadChildren: () => import('./modules/pretest/pretest.module').then((m) => m.PretestModule)
+      },
+      {
         path: 'pages',
         loadChildren: () => import('./views/pages/pages.module').then((m) => m.PagesModule)
       },
