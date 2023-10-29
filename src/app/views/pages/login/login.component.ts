@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LOCAL_STORAGE_NAME } from 'src/app/environments/const';
+import { LoadingService } from 'src/app/services/Loading.Service';
 import { AccountService } from '../../../services/app.service';
 
 
@@ -22,6 +23,7 @@ export class LoginComponent implements OnInit {
     private accountService: AccountService,
     private router: Router,
     private route: ActivatedRoute,
+    public  loadingService: LoadingService
     ) { }
   
   ngOnInit() {

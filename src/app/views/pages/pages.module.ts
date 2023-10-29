@@ -6,7 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { Page404Component } from './page404/page404.component';
 import { Page500Component } from './page500/page500.component';
-import { AlertModule, ButtonModule, CardModule, FormModule, GridModule } from '@coreui/angular';
+import { AlertModule, ButtonModule, CardModule, FormModule, GridModule, SpinnerModule } from '@coreui/angular';
 import { IconModule } from '@coreui/icons-angular';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
@@ -27,7 +27,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     IconModule,
     FormsModule,
     FormModule,
-    AlertModule
+    AlertModule,
+    SpinnerModule
   ]
 })
 export class PagesModule {

@@ -9,7 +9,7 @@
 <div class="bg-light min-vh-100 d-flex flex-row align-items-center">
   <c-container>
     <c-row class="justify-content-center">
-      <c-col md="8">
+      <c-col md="5">
         <c-card-group>
           <c-card class="p-4">
             <c-card-body>
@@ -40,18 +40,19 @@
                   <c-col xs="6">
                     <button cButton class="px-4" color="primary" (click)="login()">
                       Login
+                      <c-spinner color="light" aria-hidden="true" size="sm" *ngIf="loadingService.isLoading"></c-spinner>
                     </button>
                   </c-col>
-                  <c-col class="text-right" xs="6">
+                  <!-- <c-col class="text-right" xs="6">
                     <button cButton class="px-0" color="link">
                       Forgot password?
                     </button>
-                  </c-col>
+                  </c-col> -->
                 </c-row>
               </form>
             </c-card-body>
           </c-card>
-          <c-card [ngStyle]="{'width.%': 44}" class="text-white bg-primary py-5">
+          <!-- <c-card [ngStyle]="{'width.%': 44}" class="text-white bg-primary py-5">
             <c-card-body class="text-center">
               <div>
                 <h2>Sign up</h2>
@@ -64,7 +65,7 @@
                 </button>
               </div>
             </c-card-body>
-          </c-card>
+          </c-card> -->
         </c-card-group>
       </c-col>
     </c-row>
