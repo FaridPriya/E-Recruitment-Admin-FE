@@ -4,6 +4,8 @@ export class ApplicantSpecificationDTO{
     Type!: string;
     Description!: string;
     ListApplicantSpecificationsItem: ApplicantSpecificationItemDTO[] = [];
+
+    IsSelected!: boolean;
 }
 
 export class ApplicantSpecificationItemDTO{

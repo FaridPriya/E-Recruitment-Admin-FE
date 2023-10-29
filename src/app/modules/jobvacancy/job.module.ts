@@ -6,6 +6,7 @@ import { IconModule } from "@coreui/icons-angular";
 import { JobRoutingModule } from "./job-routing.module";
 import { JobListComponent } from "./components/job-list.component";
 import { JobCreateComponent } from "./components/job-create.component";
+import { JobDetailComponent } from "./components/job-detail.component";
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { JobCreateComponent } from "./components/job-create.component";
     ],
     declarations: [
         JobListComponent,
-        JobCreateComponent
+        JobCreateComponent,
+        JobDetailComponent
     ]
 })
 

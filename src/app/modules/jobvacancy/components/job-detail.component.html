@@ -1,0 +1,108 @@
+<c-alert [(visible)]="visible"
+         [dismissible]="dismissible"
+         color="danger"
+         fade
+         *ngIf="visible">
+  {{errorMessage}}
+</c-alert>
+
+<c-row ngPreserveWhitespaces>
+<form cForm name="myForm" [formGroup]="attachedForm" (ngSubmit)="_submitForm()">
+    <c-col xs="12">
+        <c-card class="mb-4">
+            <c-card-body>
+                <div class="mb-3">
+                    <label for="Name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="Name" placeholder="Name" formControlName="Name" required>
+                    <label
+                      *ngIf="getFormControl('Name')!.invalid && (getFormControl('Name')!.dirty ||getFormControl('Name')!.touched)"
+                      class="text-danger">
+                      Field must be fill
+                    </label>
+                  </div>
+                  <div class="mb-3">
+                    <input cFormCheckInput formControlName="IsActive" value="IsActive" id="isActive" type="checkbox"/>
+                    <label cFormCheckLabel for="isActive">Active</label>
+                  </div>
+                  <div class="mb-3">
+                    <label for="PretestQuestionId" class="form-label">Pretest Question</label>
+                    <select aria-label="Default select example" cSelect [(ngModel)]="pretestSelected" formControlName="PretestQuestionId">
+                        <option *ngFor="let item of listTest; index as i" [ngValue]="item.Id">{{item.Name}}</option>
+                    </select>
+                  </div>
+                  <div class="mb-3">
+                    <label for="Description" class="form-label">Description</label>
+                    <textarea class="form-control" id="Description" rows="2" formControlName="Description"></textarea>
+                  </div>
+            </c-card-body>
+        </c-card>
+    </c-col>
+    <c-col xs="12">
+        <c-card class="mb-4">
+            <c-card-header>
+                <strong>Specification</strong>
+            </c-card-header>
+            <c-card-body>
+                <c-row>
+                    <c-col>
+                        <label for="Spec" class="form-label">Skill</label>
+                        <c-form-check *ngFor="let item of skillSpec; index as i">
+                            <input cFormCheckInput [checked]="item.IsSelected" id="{{item.Id}}" type="checkbox" (click)="AddRequirement(item)"/>
+                            <label cFormCheckLabel for="{{item.Id}}">{{item.Name}}</label>
+                        </c-form-check>
+                    </c-col>
+
+                    <c-col>
+                        <label for="Spec" class="form-label">Experience</label>
+                        <c-form-check *ngFor="let item of experienceSpec; index as i">
+                            <input cFormCheckInput [checked]="item.IsSelected" id="{{item.Id}}" type="checkbox" (click)="AddRequirement(item)"/>
+                            <label cFormCheckLabel for="{{item.Id}}">{{item?.Name}}</label>
+                        </c-form-check>
+                    </c-col>
+
+                    <c-col>
+                        <label for="Spec" class="form-label">Education</label>
+                        <c-form-check *ngFor="let item of educationSpec; index as i">
+                            <input cFormCheckInput [checked]="item.IsSelected" id="{{item.Id}}" type="checkbox" (click)="AddRequirement(item)"/>
+                            <label cFormCheckLabel for="{{item.Id}}">{{item.Name}}</label>
+                        </c-form-check>
+                    </c-col>
+                </c-row>
+            </c-card-body>
+        </c-card>
+    </c-col>
+
+    <c-col xs="12">
+        <c-card class="mb-4">
+            <c-card-header>
+                <strong>Specification</strong>
+            </c-card-header>
+            <c-card-body>
+                <div class="mb-3">
+                    <label class="form-label">Skill</label>
+                    <c-col>
+                        <c-badge *ngFor="let item of itemSkillSpec; index as i" color="info" class="position-relative mx-2" >{{item.Name}}</c-badge>
+                    </c-col>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Experience</label>
+                    <c-col>
+                        <c-badge *ngFor="let item of itemExperienceSpec; index as i" color="warning" class="position-relative mx-2" >{{item.Name}}</c-badge>
+                    </c-col>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Education</label>
+                    <c-col>
+                        <c-badge *ngFor="let item of itemEducationSpec; index as i" color="success" class="position-relative mx-2" >{{item.Name}}</c-badge>
+                    </c-col>
+                </div>
+                            
+            </c-card-body>
+        </c-card>
+    </c-col>
+
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-2">
+        <button cButton color="primary" class="me-md-2" [disabled]="loading" (click)="save()">Save</button>
+    </div>
+</form>
+</c-row>

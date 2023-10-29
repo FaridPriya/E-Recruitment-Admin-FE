@@ -1,5 +1,6 @@
 import { JobListComponent } from "./components/job-list.component";
 import { JobCreateComponent } from "./components/job-create.component";
+import { JobDetailComponent } from "./components/job-detail.component";
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from "@angular/core";
 
@@ -19,10 +20,10 @@ const routes: Routes = [
         title: 'Job Vacancy Create'
       }
     },
-    // {
-    //   path: ':id',
-    //   component: RequirementDetailComponent
-    // }
+    {
+      path: ':id',
+      component: JobDetailComponent
+    }
   ];
   
 @NgModule({
