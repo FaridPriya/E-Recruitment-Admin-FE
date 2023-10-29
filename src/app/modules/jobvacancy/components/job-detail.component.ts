@@ -6,6 +6,7 @@ import { freeSet } from '@coreui/icons';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PretestQuestionDTO } from 'src/app/dto/PretestQuestionDTO';
+import { Guid } from 'guid-typescript';
 
 @Component({
     selector: 'app-job-detail',
@@ -167,8 +168,10 @@ export class JobDetailComponent implements OnInit {
             this.listRequirement = this.listRequirement.filter(a => a.ApplicantSpecificationId != item.Id)
         }else{
             const requirement = new JobVacancyRequirementDTO()
+            requirement.Id = Guid.create().toString();
             requirement.ApplicantSpecificationId = item.Id;
             requirement.ApplicantSpecificationName = item.Name;
+            requirement.JobVacancyId = item.Name;
             this.listRequirement.push(requirement);
         }
 

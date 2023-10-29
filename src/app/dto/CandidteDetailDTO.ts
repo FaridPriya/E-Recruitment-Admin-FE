@@ -12,6 +12,8 @@ export class CandidateDetailDTO{
     Education: SpecCandidate[] = [];
     Experience: SpecCandidate[] = [];
     Skill: SpecCandidate[] = [];
+    Status!: string;
+    ApplyDate!: string;
 }
 
 export class SpecCandidate{

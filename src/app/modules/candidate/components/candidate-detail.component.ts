@@ -19,6 +19,7 @@ export class CandidateDetailComponent implements OnInit {
 
     idCandidate = '';
     candidate: CandidateDetailDTO = new CandidateDetailDTO();
+    resumeParse: any = null;
     constructor(
         private fb: FormBuilder,
         private candidateService: CandidateService,
@@ -49,6 +50,11 @@ export class CandidateDetailComponent implements OnInit {
         this.idCandidate = this.activatedRoute.snapshot.params['id'];
         this.candidateService.getDataById(this.idCandidate).subscribe((data: any) => {
             this.candidate = data;
+            this.resumeParse = this.candidate.AIScreeningResult;
+
+            if (this.resumeParse != null && this.resumeParse != undefined) {
+                this.parseResumeResult();
+            }
         }, error => {
             console.log(error);
             if (error != null) {
@@ -59,6 +65,11 @@ export class CandidateDetailComponent implements OnInit {
             }
             this.showError(error.error);
         })
+    }
+
+    parseResumeResult() {
+        this.resumeParse = JSON.parse(this.resumeParse);
+        console.log(this.resumeParse);
     }
 
     showError(msg: string){
@@ -73,7 +84,18 @@ export class CandidateDetailComponent implements OnInit {
         }
     }
 
-    save(){
-        
+    save(status: number){
+        this.candidateService.updateStatus(this.idCandidate, status).subscribe(data => {
+            this.router.navigate(['../'], { relativeTo: this.activatedRoute });
+          }, error => {
+            console.log(error);
+            if (error != null) {
+                const code = error.status;
+                if (code === 401) {
+                    this.router.navigateByUrl(`login`);
+                }
+            }
+            this.showError(error.error);
+        })
     }
 }

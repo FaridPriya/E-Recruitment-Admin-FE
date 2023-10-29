@@ -14,6 +14,7 @@
                       <th scope="col">Job</th>
                       <th scope="col">Email</th>
                       <th scope="col">AI Screening</th>
+                      <th scope="col">Status</th>
                       <th scope="col">Action</th>
                     </tr>
                     </thead>
@@ -25,6 +26,9 @@
                             <td>{{item.Email}}</td>
                             <td><c-badge [color]="item.AIScreeningStatus == 'Pending'? 'info': item.AIScreeningStatus == 'Success' ? 'success' :
                                 'danger'">{{item.AIScreeningStatus}}</c-badge></td>
+                            <td><c-badge [color]="item.Status == 'InProgress' ? 'warning' : 
+                                item.Status == 'Passed' ? 'success' :
+                                item.Status == 'Failed' ? 'danger' : 'dark'">{{item.Status}}</c-badge></td>
                             <td (click)="deleteCandidate(item.Id)"><svg [cIcon]="icons.cilTrash" title="icon trash" size="xl"></svg></td>
                         </tr>
                     </tbody>

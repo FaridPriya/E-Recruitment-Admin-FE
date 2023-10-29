@@ -8,6 +8,8 @@ export class JobVacancyDTO{
 }
 
 export class JobVacancyRequirementDTO{
+    Id!: string;
     ApplicantSpecificationId!: string;
     ApplicantSpecificationName!: string;
+    JobVacancyId!: string;
 }

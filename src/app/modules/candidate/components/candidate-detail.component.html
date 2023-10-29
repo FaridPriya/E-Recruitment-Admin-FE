@@ -1,10 +1,29 @@
+<div class="d-grid gap-2 d-md-flex justify-content-md-end mb-2">
+    <c-dropdown variant="btn-group">
+        <button cButton cDropdownToggle>
+          Action
+        </button>
+        <ul cDropdownMenu>
+          <li (click)="save(1)"><a cDropdownItem>Update to Passed</a></li>
+          <li (click)="save(2)"><a cDropdownItem>Update to Failed</a></li>
+          <li (click)="save(3)"><a cDropdownItem>Reject</a></li>
+        </ul>
+      </c-dropdown>
+</div>
+
 <div class="row">
-    <c-col>
-        <c-card class="mb-4">
+    <c-col class="col-md-6">
+        <c-card class="card-resume" class="mb-4">
             <c-card-body>
                 <div class="mb-3">
-                    <h4 class="card-title mb-0">{{candidate.Name}}</h4>
-                    <div class="text-medium-emphasis">{{candidate.JobVacancyName}}</div>
+                    <c-col class="text-right">
+                        <c-badge [color]="candidate.Status == 'InProgress' ? 'warning' : 
+                        candidate.Status == 'Passed' ? 'success' :
+                        candidate.Status == 'Failed' ? 'danger' : 'dark'">{{candidate.Status}}</c-badge>
+                    </c-col>
+                    <h4 class="card-title mb-0">{{candidate.Name}} </h4>
+                    <div class="text-medium-emphasis">{{candidate.JobVacancyName}} 
+                    </div>
                 </div>
                 <c-row>
                     <c-col>
@@ -24,7 +43,7 @@
                     </c-col>
                     <c-col>
                         <div class="fw-semibold">Apply date</div>
-                        <p>{{candidate.CreatedAt}}</p>
+                        <p>{{candidate.ApplyDate}}</p>
                     </c-col>
                 </c-row>
                 <c-col>
@@ -52,9 +71,48 @@
         </c-card>
     </c-col>
 
-    <c-col>
-        <c-card class="mb-4">
+    <c-col class="col-md-6">
+        <c-card class="card-resume" *ngIf="resumeParse">
+            <c-card-header>
+                <strong>Resume</strong>
+            </c-card-header>
             <c-card-body>
+                <c-row>
+                    <c-col>
+                        <div class="fw-semibold">First Name</div>
+                        <p>{{resumeParse.hireability.extracted_data.personal_infos.name.first_name}}</p>
+                    </c-col>
+                    <c-col>
+                        <div class="fw-semibold">Last Name</div>
+                        <p>{{resumeParse.hireability.extracted_data.personal_infos.name.last_name}}</p>
+                    </c-col>
+                </c-row>
+                <div class="mb-3">
+                    <h4 class="card-title mb-0">Education</h4>
+                    <div>
+                        <ul *ngFor="let item of resumeParse.hireability.extracted_data.education.entries; index as i"> 
+                            <li class="fw-semibold">{{item.description}}</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <h4 class="card-title mb-0">Work Experience</h4>
+                    <div>
+                        <ul *ngFor="let item of resumeParse.hireability.extracted_data.work_experience.entries; index as i"> 
+                            <li><strong>{{item.title}} {{item.company}}</strong>
+                                <p>{{item.description}}</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <h4 class="card-title mb-0">Skill</h4>
+                    <div>
+                        <ul *ngFor="let item of resumeParse.hireability.extracted_data.skills; index as i"> 
+                            <li>{{item.name}}</li>
+                        </ul>
+                    </div>
+                </div>
             </c-card-body>
         </c-card>
     </c-col>

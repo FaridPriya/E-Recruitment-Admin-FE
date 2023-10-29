@@ -149,9 +149,8 @@ export class CandidateService extends AbstractMasterRestService {
         return this.http.post<any>(this.actionUrl, body, this.httpOptions);
     }
 
-    updateData(data: any, id: string): Observable<any> {
-        const body = JSON.stringify(data);
-        return this.http.put<any>(this.actionUrl + `/${id}`, body, this.httpOptions);
+    updateStatus(id: string, status: number): Observable<any> {
+        return this.http.put<any>(this.actionUrl + `/Status/${id}/${status}`, null, this.httpOptions);
     }
 }
 
