@@ -81,7 +81,7 @@ const routes: Routes = [
   //     title: 'Register Page'
   //   }
   // },
-  {path: '**', redirectTo: 'dashboard'}
+  {path: '**', redirectTo: 'candidate'}
 ];
 
 @NgModule({

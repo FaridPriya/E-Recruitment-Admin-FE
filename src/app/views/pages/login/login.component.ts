@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
       
       this.accountService.login(sendData).subscribe(data => {
         localStorage.setItem(LOCAL_STORAGE_NAME.ACCESS_TOKEN, data.Token);
-        this.router.navigate([this.route.snapshot.queryParams['redirectUrl'] || 'dashboard'], { relativeTo: this.route });
+        this.router.navigate([this.route.snapshot.queryParams['candidate'] || 'candidate'], { relativeTo: this.route });
       }, error => {
         console.log(error);
         this.showError(error.error);
