@@ -1,9 +1,11 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { CandidateService } from 'src/app/services/app.service';
+import { CandidateService, PretestService } from 'src/app/services/app.service';
 import { freeSet } from '@coreui/icons';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CandidateDetailDTO } from 'src/app/dto/CandidteDetailDTO';
+import { CandidatePretestAnswerDTO } from 'src/app/dto/CandidatePretestAnswerDTO';
+import { ConverterHelper } from './converter-helper';
 
 
 @Component({
@@ -20,15 +22,20 @@ export class CandidateDetailComponent implements OnInit {
     idCandidate = '';
     candidate: CandidateDetailDTO = new CandidateDetailDTO();
     resumeParse: any = null;
+    converterHelper = ConverterHelper
+
+    candidatePretestAnswerDTO: CandidatePretestAnswerDTO[] = []
     constructor(
         private fb: FormBuilder,
         private candidateService: CandidateService,
+        private pretestService: PretestService,
         private router: Router,
         private activatedRoute: ActivatedRoute
     ) { }
     
     ngOnInit(): void {
         this.getData();
+        this.getPretestResult();
         this.setupForm();
     }
 
@@ -55,6 +62,21 @@ export class CandidateDetailComponent implements OnInit {
             if (this.resumeParse != null && this.resumeParse != undefined) {
                 this.parseResumeResult();
             }
+        }, error => {
+            console.log(error);
+            if (error != null) {
+                const code = error.status;
+                if (code === 401) {
+                    this.router.navigateByUrl(`login`);
+                }
+            }
+            this.showError(error.error);
+        })
+    }
+
+    getPretestResult() {
+        this.pretestService.getCandidateAnswer(this.idCandidate).subscribe((data: any) => {
+            this.candidatePretestAnswerDTO = data
         }, error => {
             console.log(error);
             if (error != null) {

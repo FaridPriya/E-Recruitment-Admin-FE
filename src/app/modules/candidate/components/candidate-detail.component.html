@@ -118,3 +118,43 @@
     </c-col>
     
 </div>
+
+<c-row>
+    <c-col xs>
+      <c-card class="mb-4">
+        <c-card-header>Users</c-card-header>
+        <c-card-body>
+          <table
+            [hover]="true"
+            [responsive]="true"
+            [striped]="true"
+            align="middle"
+            cTable
+            class="mb-0 border"
+          >
+            <thead cTableColor="light">
+              <tr>
+                <th>No</th>
+                <th>Question & Answer</th>
+                <th>Duration</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of candidatePretestAnswerDTO; let i = index">
+                    <td>{{i + 1}}</td>
+                    <td>
+                        <div>{{item.Question}}</div>
+                        <div class="small text-medium-emphasis text-nowrap">
+                            <span>{{item.Answer}}</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="small text-medium-emphasis">{{converterHelper.detikKeMenit(item.Duration)}}</div>
+                    </td>
+              </tr>
+            </tbody>
+          </table>
+        </c-card-body>
+      </c-card>
+    </c-col>
+  </c-row>

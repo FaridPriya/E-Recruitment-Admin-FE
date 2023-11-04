@@ -187,6 +187,10 @@ export class PretestService extends AbstractMasterRestService {
         return this.http.get<any>(this.actionUrl, this.httpOptions);
     }
 
+    getCandidateAnswer(id: string): Observable<any> {
+        return this.http.get<any>(this.actionUrl+`/PretestCandidateAnswers/${id}`, this.httpOptions);
+    }
+
     getDataById(id: string): Observable<any> {
         return this.http.get<any>(this.actionUrl + `/${id}`, this.httpOptions);
     }
