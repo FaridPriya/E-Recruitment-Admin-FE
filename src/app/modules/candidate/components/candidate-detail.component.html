@@ -4,9 +4,9 @@
           Action
         </button>
         <ul cDropdownMenu>
-          <li (click)="save(1)"><a cDropdownItem>Update to Passed</a></li>
-          <li (click)="save(2)"><a cDropdownItem>Update to Failed</a></li>
-          <li (click)="save(3)"><a cDropdownItem>Reject</a></li>
+          <li (click)="save(1)"><a cDropdownItem>Update to Pass</a></li>
+          <li (click)="save(2)"><a cDropdownItem>Update to Fail</a></li>
+          <!-- <li (click)="save(3)"><a cDropdownItem>Reject</a></li> -->
         </ul>
       </c-dropdown>
 </div>
@@ -32,7 +32,8 @@
                     </c-col>
                     <c-col>
                         <div class="fw-semibold">Phone Number</div>
-                        <p>{{candidate.NoHandphone}}</p>
+                        <p><a href="https://wa.me/{{candidate.NoHandphone}}" target="_blank" class="text-info whatsapp-number">{{candidate.NoHandphone}}</a>
+                        </p>
                     </c-col>
                 </c-row>
                 <c-row>
@@ -79,16 +80,16 @@
             <c-card-body>
                 <c-row>
                     <c-col>
-                        <div class="fw-semibold">First Name</div>
+                        <div class="title-cv-parse text-medium-emphasis">First Name</div>
                         <p>{{resumeParse.hireability.extracted_data.personal_infos.name.first_name}}</p>
                     </c-col>
                     <c-col>
-                        <div class="fw-semibold">Last Name</div>
+                        <div class="title-cv-parse text-medium-emphasis">Last Name</div>
                         <p>{{resumeParse.hireability.extracted_data.personal_infos.name.last_name}}</p>
                     </c-col>
                 </c-row>
                 <div class="mb-3">
-                    <h4 class="card-title mb-0">Education</h4>
+                    <div class="title-cv-parse text-medium-emphasis mb-0">Education</div>
                     <div>
                         <ul *ngFor="let item of resumeParse.hireability.extracted_data.education.entries; index as i"> 
                             <li class="fw-semibold">{{item.description}}</li>
@@ -96,17 +97,17 @@
                     </div>
                 </div>
                 <div class="mb-3">
-                    <h4 class="card-title mb-0">Work Experience</h4>
+                    <div class="title-cv-parse text-medium-emphasis mb-0">Work Experience</div>
                     <div>
                         <ul *ngFor="let item of resumeParse.hireability.extracted_data.work_experience.entries; index as i"> 
-                            <li><strong>{{item.title}} {{item.company}}</strong>
+                            <li><div class="fw-semibold">{{item.company}}</div>
                                 <p>{{item.description}}</p>
                             </li>
                         </ul>
                     </div>
                 </div>
                 <div class="mb-3">
-                    <h4 class="card-title mb-0">Skill</h4>
+                    <div class="title-cv-parse text-medium-emphasis mb-0">Skill</div>
                     <div>
                         <ul *ngFor="let item of resumeParse.hireability.extracted_data.skills; index as i"> 
                             <li>{{item.name}}</li>
@@ -135,19 +136,22 @@
             <thead cTableColor="light">
               <tr>
                 <th>No</th>
-                <th>Question & Answer</th>
+                <th>Question</th>
+                <th>Answer</th>
                 <th>Duration</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let item of candidatePretestAnswerDTO; let i = index">
                     <td>{{i + 1}}</td>
-                    <td>
+                    <!-- <td>
                         <div>{{item.Question}}</div>
                         <div class="small text-medium-emphasis text-nowrap">
-                            <span>{{item.Answer}}</span>
+                            <span>A: {{item.Answer}}</span>
                         </div>
-                    </td>
+                    </td> -->
+                    <td class="fw-semibold text-left">{{item.Question}}</td>
+                    <td>{{item.Answer}}</td>
                     <td>
                         <div class="small text-medium-emphasis">{{converterHelper.detikKeMenit(item.Duration)}}</div>
                     </td>

@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { DashboardService } from 'src/app/services/app.service';
+import { DashboardDTO } from 'src/app/dto/DashboardDTO';
 
 import { DashboardChartsData, IChartProps } from './dashboard-charts-data';
+import { freeSet } from '@coreui/icons';
+//import { cilChartPie, cilArrowRight } from '@coreui/icons';
+
 
 interface IUser {
   name: string;
@@ -22,8 +28,16 @@ interface IUser {
   styleUrls: ['dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  constructor(private chartsData: DashboardChartsData) {
+  constructor(
+    private chartsData: DashboardChartsData, 
+    private dashboardService: DashboardService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute) {
   }
+
+  dataDashboard: DashboardDTO = new DashboardDTO();
+  icons = freeSet;
+  //icons = { cilChartPie, cilArrowRight };
 
   public users: IUser[] = [
     {
@@ -113,6 +127,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.initCharts();
+    this.getData();
   }
 
   initCharts(): void {
@@ -124,4 +139,18 @@ export class DashboardComponent implements OnInit {
     this.chartsData.initMainChart(value);
     this.initCharts();
   }
+
+  getData(){
+    this.dashboardService.getData().subscribe(data => {
+        this.dataDashboard = data;
+    }, error => {
+        if (error != null) {
+            const code = error.status;
+            if (code === 401) {
+                this.router.navigateByUrl(`login`);
+            }
+        }
+        console.log(error);
+    })
+}
 }

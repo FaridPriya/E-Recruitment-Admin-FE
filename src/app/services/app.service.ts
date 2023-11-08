@@ -209,3 +209,19 @@ export class PretestService extends AbstractMasterRestService {
         return this.http.put<any>(this.actionUrl + `/${id}`, body, this.httpOptions);
     }
 }
+
+/** ***************************************************************************
+* DASHBOARD SERVICE
+******************************************************************************/
+@Injectable({
+    providedIn: 'root'
+})
+export class DashboardService extends AbstractMasterRestService {
+    constructor(http: HttpClient) {
+        super(http, environment.Url + 'Dashboard');
+    }
+
+    getData(): Observable<any> {
+        return this.http.get<any>(this.actionUrl, this.httpOptions);
+    }
+}

@@ -1,5 +1,96 @@
-<app-widgets-dropdown></app-widgets-dropdown>
-<c-card class="mb-4">
+<c-row>
+  <c-col lg="3" xs="12">
+    <c-widget-stat-f
+      [title]="'Active Job'"
+      class="mb-3"
+      color="primary"
+      [value]="dataDashboard.ActiveJobCount"
+    >
+      <ng-template cTemplateId="widgetIconTemplate">
+        <svg [cIcon]="icons.cilBriefcase" size="xl" width="24"></svg>
+      </ng-template>
+    </c-widget-stat-f>
+  </c-col>
+
+  <c-col lg="3" xs="12">
+    <c-widget-stat-f
+      [title]="'Monthly Candidate'"
+      class="mb-3"
+      color="success"
+      [value]="dataDashboard.CandidateInMonth"
+    >
+      <ng-template cTemplateId="widgetIconTemplate">
+        <svg [cIcon]="icons.cilUser" size="xl" width="24"></svg>
+      </ng-template>
+    </c-widget-stat-f>
+  </c-col>
+
+  <c-col lg="3" xs="12">
+    <c-widget-stat-f
+      [title]="'Weekly Candidate'"
+      class="mb-3"
+      color="warning"
+      [value]="dataDashboard.CandidateInWeek"
+    >
+      <ng-template cTemplateId="widgetIconTemplate">
+        <svg [cIcon]="icons.cilUser" size="xl" width="24"></svg>
+      </ng-template>
+    </c-widget-stat-f>
+  </c-col>
+
+  <c-col lg="3" xs="12">
+    <c-widget-stat-f
+      [title]="'Daily Candidate'"
+      class="mb-3"
+      color="danger"
+      [value]="dataDashboard.CandidateInDay"
+    >
+      <ng-template cTemplateId="widgetIconTemplate">
+        <svg [cIcon]="icons.cilUser" size="xl" width="24"></svg>
+      </ng-template>
+    </c-widget-stat-f>
+  </c-col>
+</c-row>
+
+<c-row>
+  <c-col xs>
+    <c-card class="mb-4">
+      <c-card-header>Job Preview</c-card-header>
+      <c-card-body>
+        <table
+          [hover]="true"
+          [responsive]="true"
+          [striped]="true"
+          align="middle"
+          cTable
+          class="mb-0 border"
+        >
+          <thead cTableColor="light">
+            <tr>
+              <th>No</th>
+              <th>Job Name</th>
+              <th class="text-center">In Progress</th>
+              <th class="text-center">Failed</th>
+              <th class="text-center">Passed</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let job of dataDashboard.JobDetail; let i = index">
+              <td>{{i + 1}}</td>
+              <td>{{job.JobName}}</td>
+              <td class="text-center fw-semibold text-nowrap">{{job.CandidatePendingCount}}</td>
+              <td class="text-center fw-semibold text-nowrap">{{job.CandidateFailedCount}}</td>
+              <td class="text-center fw-semibold text-nowrap">{{job.CandidatePassedCount}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </c-card-body>
+    </c-card>
+  </c-col>
+</c-row>
+
+
+<!-- <c-card class="mb-4">
   <c-card-body>
     <c-row>
       <c-col sm="5">
@@ -106,11 +197,11 @@
       </c-col>
     </c-row>
   </c-card-footer>
-</c-card>
+</c-card> -->
 
-<app-widgets-brand [withCharts]="true"></app-widgets-brand>
+<!-- <app-widgets-brand [withCharts]="true"></app-widgets-brand> -->
 
-<c-row>
+<!-- <c-row>
   <c-col xs>
     <c-card class="mb-4">
       <c-card-header>Traffic {{ "&" }} Sales</c-card-header>
@@ -444,4 +535,4 @@
       </c-card-body>
     </c-card>
   </c-col>
-</c-row>
+</c-row> -->

@@ -12,7 +12,6 @@
                       <th scope="col">No</th>
                       <th scope="col">Name</th>
                       <th scope="col">Job</th>
-                      <th scope="col">Email</th>
                       <th scope="col">AI Screening</th>
                       <th scope="col">Status</th>
                       <th scope="col">Action</th>
@@ -21,9 +20,8 @@
                     <tbody>
                         <tr *ngFor="let item of listCandidate; let i = index">
                             <td>{{i + 1}}</td>
-                            <td (click)="detail(item.Id)">{{item.Name}}</td>
+                            <td (click)="detail(item.Id)" class="text-info click-detail">{{item.Name}}</td>
                             <td>{{item.JobVacancyName}}</td>
-                            <td>{{item.Email}}</td>
                             <td><c-badge [color]="item.AIScreeningStatus == 'Pending'? 'info': item.AIScreeningStatus == 'Success' ? 'success' :
                                 'danger'">{{item.AIScreeningStatus}}</c-badge></td>
                             <td><c-badge [color]="item.Status == 'InProgress' ? 'warning' : 

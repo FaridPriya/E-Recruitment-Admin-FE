@@ -34,7 +34,7 @@
                   </div>
                   <div class="mb-3">
                     <label for="Phone" class="form-label">Phone Number</label>
-                    <input type="text" class="form-control" id="Phone" placeholder="Phone" formControlName="Phone" required>
+                    <input type="text" class="form-control" id="Phone" placeholder="Phone Number" formControlName="Phone" required>
                     <c-col *ngFor="let validation of formValidationType.form">
                         <label class="text-danger" *ngIf="
                         getFormControl('Phone')!.hasError(validation.type) && getFormControl('Phone')!.invalid && (getFormControl('Phone')!.dirty || getFormControl('Phone')!.touched)
