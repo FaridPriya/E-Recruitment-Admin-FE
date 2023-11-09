@@ -22,9 +22,9 @@
                             <td>{{i + 1}}</td>
                             <td (click)="detail(item.Id)" class="text-info click-detail">{{item.Name}}</td>
                             <td>{{item.JobVacancyName}}</td>
-                            <td><c-badge [color]="item.AIScreeningStatus == 'Pending'? 'info': item.AIScreeningStatus == 'Success' ? 'success' :
+                            <td><c-badge [color]="item.AIScreeningStatus == 'Pending'? 'secondary': item.AIScreeningStatus == 'Success' ? 'success' :
                                 'danger'">{{item.AIScreeningStatus}}</c-badge></td>
-                            <td><c-badge [color]="item.Status == 'InProgress' ? 'warning' : 
+                            <td><c-badge [color]="item.Status == 'Pending' ? 'secondary' : 
                                 item.Status == 'Passed' ? 'success' :
                                 item.Status == 'Failed' ? 'danger' : 'dark'">{{item.Status}}</c-badge></td>
                             <td (click)="deleteCandidate(item.Id)"><svg [cIcon]="icons.cilTrash" title="icon trash" size="xl"></svg></td>

@@ -13,4 +13,5 @@ export class ResumeJobDTO{
     CandidateFailedCount!: number;
     CandidatePassedCount!: number;
     CandidateRejectCount!: number;
+    CandidateCount!: number;
 }

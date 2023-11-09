@@ -69,18 +69,18 @@
             <tr>
               <th>No</th>
               <th>Job Name</th>
-              <th class="text-center">In Progress</th>
-              <th class="text-center">Failed</th>
+              <th class="text-center">Total Applicants</th>
               <th class="text-center">Passed</th>
+              <th class="text-center">Failed</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let job of dataDashboard.JobDetail; let i = index">
               <td>{{i + 1}}</td>
               <td>{{job.JobName}}</td>
-              <td class="text-center fw-semibold text-nowrap">{{job.CandidatePendingCount}}</td>
-              <td class="text-center fw-semibold text-nowrap">{{job.CandidateFailedCount}}</td>
+              <td class="text-center fw-semibold text-nowrap">{{job.CandidateCount}}</td>
               <td class="text-center fw-semibold text-nowrap">{{job.CandidatePassedCount}}</td>
+              <td class="text-center fw-semibold text-nowrap">{{job.CandidateFailedCount}}</td>
             </tr>
           </tbody>
         </table>
