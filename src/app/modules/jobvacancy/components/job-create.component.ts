@@ -47,7 +47,8 @@ export class JobCreateComponent implements OnInit {
         // Set form to default values
         this.attachedForm = this.fb.group({
           Name: ['', [Validators.required]],
-          Description: ['']
+          Description: [''],
+          IsActive: [true]
         });
     }
 
@@ -157,6 +158,7 @@ export class JobCreateComponent implements OnInit {
     generateDataSend() {
         this.jobVacancyDTO.Name = this.attachedForm.value.Name;
         this.jobVacancyDTO.Description = this.attachedForm.value.Description;
+        this.jobVacancyDTO.IsActive = this.attachedForm.value.IsActive;
         this.jobVacancyDTO.ListRequirement = this.listRequirement;
     }
 
