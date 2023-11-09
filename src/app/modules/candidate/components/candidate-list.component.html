@@ -1,7 +1,45 @@
 
-<div class="d-grid gap-2 d-md-flex justify-content-md-end mb-2">
-    <button cButton color="primary" class="me-md-2" (click)="create()">Add</button>
-</div>
+
+
+<c-row>
+    <label class="form-label fw-semibold">Filter</label>
+    <c-col md="2">
+        <c-input-group>
+            <span cInputGroupText>Job</span>
+            <select [(ngModel)]="selectedJob" cSelect>
+                <option *ngFor="let item of listJob; index as i" [ngValue]="item.Id">{{item.Name}}</option>
+            </select>
+        </c-input-group>
+    </c-col>
+    <c-col md="2">
+        <c-input-group>
+            <span cInputGroupText>Status</span>
+            <select [(ngModel)]="selectedStatus" cSelect>
+                <option *ngFor="let item of statusFilter; index as i" [ngValue]="item.Id">{{item.Name}}</option>
+            </select>
+        </c-input-group>
+    </c-col>
+
+    <c-col md="1">
+        <c-button-group aria-label="Basic outlined example" role="group">
+            <button cButton color="primary" (click)="getCandidate()">
+                <svg [cIcon]="icons.cilSearch" title="icon trash" size="md"></svg>
+            </button>
+            <button cButton color="primary" variant="outline" (click)="clearFilter()">
+                <svg [cIcon]="icons.cilReload" title="icon trash" size="md"></svg>
+            </button>
+          </c-button-group>
+        <!-- <button cButton color="primary" (click)="getCandidate()"><svg [cIcon]="icons.cilSearch" title="icon trash" size="md"></svg></button>
+        <button cButton color="primary" (click)="getCandidate()"><svg [cIcon]="icons.cilSearch" title="icon trash" size="md"></svg></button> -->
+    </c-col>
+    
+    <c-col md="7">
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-2">
+            <button cButton color="primary" class="me-md-2" (click)="create()">Add</button>
+        </div>
+    </c-col>
+</c-row>
+
 <c-row ngPreserveWhitespaces>
     <c-col xs="12">
         <c-card class="mb-4">

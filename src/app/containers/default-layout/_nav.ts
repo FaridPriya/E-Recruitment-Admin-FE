@@ -4,28 +4,28 @@ export const navItems: INavData[] = [
   {
     name: 'Dashboard',
     url: '/dashboard',
-    iconComponent: { name: 'cil-star' }
-  },
-  {
-    name: 'Candidate',
-    url: '/candidate',
-    iconComponent: { name: 'cil-star' }
+    iconComponent: { name: 'cil-home' }
   },
   {
     name: 'Requirement',
     url: '/requirement',
-    iconComponent: { name: 'cil-star' }
+    iconComponent: { name: 'cil-school' }
   },
   {
     name: 'Pretest',
     url: '/pretest',
-    iconComponent: { name: 'cil-star' }
+    iconComponent: { name: 'cil-pencil' }
   },
   {
     name: 'Job Vacancy',
     url: '/jobvacancy',
-    iconComponent: { name: 'cil-star' }
+    iconComponent: { name: 'cil-briefcase' }
   },
+  {
+    name: 'Candidate',
+    url: '/candidate',
+    iconComponent: { name: 'cil-group' }
+  }
   // {
   //   title: true,
   //   name: 'Theme'

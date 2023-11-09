@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../environments/environments';
-import { LOCAL_STORAGE_NAME } from '../environments/const';
+import { LOCAL_STORAGE_NAME, STATUS_FILTER } from '../environments/const';
 import { map, tap, catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
@@ -132,8 +132,17 @@ export class CandidateService extends AbstractMasterRestService {
         super(http, environment.Url + 'Candidate');
     }
 
-    getData(): Observable<any> {
-        return this.http.get<any>(this.actionUrl, this.httpOptions);
+    getData(jobId: string, status: STATUS_FILTER): Observable<any> {
+        var path = `${this.actionUrl}?`;
+        if (jobId != undefined && jobId != null) {
+            path += `&jobId=${jobId}`
+        }
+
+        if(status != undefined && status != null) {
+            path += `&status=${status}`
+        }
+
+        return this.http.get<any>(path, this.httpOptions);
     }
 
     getDataById(id: string): Observable<any> {
