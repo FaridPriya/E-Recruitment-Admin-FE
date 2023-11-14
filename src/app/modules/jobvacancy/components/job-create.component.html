@@ -25,6 +25,17 @@
                     <label cFormCheckLabel for="isActive">Active</label>
                   </div>
                   <div class="mb-3">
+                    <label for="PretestQuestionId" class="form-label">Pretest Question</label>
+                    <select aria-label="Default select example" cSelect [(ngModel)]="pretestSelected" formControlName="PretestQuestionId">
+                        <option *ngFor="let item of listTest; index as i" [ngValue]="item.Id">{{item.Name}}</option>
+                    </select>
+                    <label
+                      *ngIf="getFormControl('PretestQuestionId')!.invalid && (getFormControl('PretestQuestionId')!.dirty ||getFormControl('PretestQuestionId')!.touched)"
+                      class="text-danger">
+                      Field must be fill
+                    </label>
+                  </div>
+                  <div class="mb-3">
                     <label for="Description" class="form-label">Description</label>
                     <textarea class="form-control" id="Description" rows="2" formControlName="Description"></textarea>
                   </div>

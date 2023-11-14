@@ -1,10 +1,11 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { ApplicantSpecificationService, JobVacancyService } from 'src/app/services/app.service';
+import { ApplicantSpecificationService, JobVacancyService, PretestService } from 'src/app/services/app.service';
 import { ApplicantSpecificationDTO, ApplicantSpecificationItemDTO } from 'src/app/dto/ApplicantSpecificationDTO';
 import { JobVacancyDTO, JobVacancyRequirementDTO } from 'src/app/dto/JobVacancyDTO';
 import { freeSet } from '@coreui/icons';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { PretestQuestionDTO } from 'src/app/dto/PretestQuestionDTO';
 
 @Component({
     selector: 'app-job-create',
@@ -29,27 +30,46 @@ export class JobCreateComponent implements OnInit {
 
     listRequirement: JobVacancyRequirementDTO[] = [];
     jobVacancyDTO: JobVacancyDTO = new JobVacancyDTO();
+    listTest!: PretestQuestionDTO[];
+    pretestSelected!: string;
 
     constructor(
         private fb: FormBuilder,
         private applicantSpecificationService: ApplicantSpecificationService,
         private jobVacancyService: JobVacancyService,
         private router: Router,
-        private activatedRoute: ActivatedRoute
+        private activatedRoute: ActivatedRoute,
+        private pretestService: PretestService
     ) { }
 
     ngOnInit(): void {
         this.setupForm()
         this.getApplicantSpec()
+        this.getPreTest()
     }
 
     setupForm() {
         // Set form to default values
         this.attachedForm = this.fb.group({
           Name: ['', [Validators.required]],
+          PretestQuestionId: ['', [Validators.required]],
           Description: [''],
           IsActive: [true]
         });
+    }
+
+    getPreTest(){
+        this.pretestService.getData().subscribe(data => {
+            this.listTest = data;
+        }, error => {
+            if (error != null) {
+                const code = error.status;
+                if (code === 401) {
+                    this.router.navigateByUrl(`login`);
+                }
+            }
+            console.log(error);
+        })
     }
 
     getApplicantSpec() {
@@ -160,6 +180,7 @@ export class JobCreateComponent implements OnInit {
         this.jobVacancyDTO.Description = this.attachedForm.value.Description;
         this.jobVacancyDTO.IsActive = this.attachedForm.value.IsActive;
         this.jobVacancyDTO.ListRequirement = this.listRequirement;
+        this.jobVacancyDTO.PretestQuestionId = this.pretestSelected;
     }
 
     save(){
