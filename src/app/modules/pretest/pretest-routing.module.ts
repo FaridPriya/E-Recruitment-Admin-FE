@@ -23,7 +23,10 @@ const routes: Routes = [
     },
     {
       path: ':id',
-      component: PretestDetailComponent
+      component: PretestDetailComponent,
+      data: {
+        title: 'Pre-test Detail'
+      }
     }
   ];
   

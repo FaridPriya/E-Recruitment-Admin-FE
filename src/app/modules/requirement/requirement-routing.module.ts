@@ -22,7 +22,10 @@ const routes: Routes = [
     },
     {
       path: ':id',
-      component: RequirementDetailComponent
+      component: RequirementDetailComponent,
+      data: {
+        title: 'Requirement Detail'
+      }
     }
   ];
   

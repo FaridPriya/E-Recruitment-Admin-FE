@@ -22,7 +22,10 @@ const routes: Routes = [
     },
     {
       path: ':id',
-      component: JobDetailComponent
+      component: JobDetailComponent,
+      data: {
+        title: 'Job Vacancy Detail'
+      }
     }
   ];
   
