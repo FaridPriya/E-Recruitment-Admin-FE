@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { AppInterceptor } from './app.interceptor';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 
 export abstract class AbstractMasterRestService {
@@ -72,17 +73,71 @@ export class ApplicantSpecificationService extends AbstractMasterRestService {
     }
 
     delete(id: string): Observable<any> {
-        return this.http.delete<any>(this.actionUrl + `/${id}`, this.httpOptions);
+        return this.http.delete<any>(this.actionUrl + `/${id}`, this.httpOptions).pipe(
+            tap((success: Response) => {
+                Swal.fire({
+                    title: "Success",
+                    text: "",
+                    icon: "success"
+                });
+            }),
+            catchError((error: any) => {
+                if (error.status !== 401) {
+                    Swal.fire({
+                        title: "Error",
+                        text: error.error,
+                        icon: "error"
+                    });
+                }
+                throw error;
+            })
+        );
     }
 
     postData(data: any): Observable<any> {
         const body = JSON.stringify(data);
-        return this.http.post<any>(this.actionUrl, body, this.httpOptions);
+        return this.http.post<any>(this.actionUrl, body, this.httpOptions).pipe(
+            tap((success: Response) => {
+                Swal.fire({
+                    title: "Success",
+                    text: "",
+                    icon: "success"
+                });
+            }),
+            catchError((error: any) => {
+                if (error.status !== 401) {
+                    Swal.fire({
+                        title: "Error",
+                        text: error.error,
+                        icon: "error"
+                    });
+                }
+                throw error;
+            })
+        );
     }
 
     updateData(data: any, id: string): Observable<any> {
         const body = JSON.stringify(data);
-        return this.http.put<any>(this.actionUrl + `/${id}`, body, this.httpOptions);
+        return this.http.put<any>(this.actionUrl + `/${id}`, body, this.httpOptions).pipe(
+            tap((success: Response) => {
+                Swal.fire({
+                    title: "Success",
+                    text: "",
+                    icon: "success"
+                });
+            }),
+            catchError((error: any) => {
+                if (error.status !== 401) {
+                    Swal.fire({
+                        title: "Error",
+                        text: error.error,
+                        icon: "error"
+                    });
+                }
+                throw error;
+            })
+        );
     }
 }
 
@@ -107,17 +162,71 @@ export class JobVacancyService extends AbstractMasterRestService {
     }
 
     delete(id: string): Observable<any> {
-        return this.http.delete<any>(this.actionUrl + `/${id}`, this.httpOptions);
+        return this.http.delete<any>(this.actionUrl + `/${id}`, this.httpOptions).pipe(
+            tap((success: Response) => {
+                Swal.fire({
+                    title: "Success",
+                    text: "",
+                    icon: "success"
+                });
+            }),
+            catchError((error: any) => {
+                if (error.status !== 401) {
+                    Swal.fire({
+                        title: "Error",
+                        text: error.error,
+                        icon: "error"
+                    });
+                }
+                throw error;
+            })
+        );
     }
 
     postData(data: any): Observable<any> {
         const body = JSON.stringify(data);
-        return this.http.post<any>(this.actionUrl, body, this.httpOptions);
+        return this.http.post<any>(this.actionUrl, body, this.httpOptions).pipe(
+            tap((success: Response) => {
+                Swal.fire({
+                    title: "Success",
+                    text: "",
+                    icon: "success"
+                });
+            }),
+            catchError((error: any) => {
+                if (error.status !== 401) {
+                    Swal.fire({
+                        title: "Error",
+                        text: error.error,
+                        icon: "error"
+                    });
+                }
+                throw error;
+            })
+        );
     }
 
     updateData(data: any, id: string): Observable<any> {
         const body = JSON.stringify(data);
-        return this.http.put<any>(this.actionUrl + `/${id}`, body, this.httpOptions);
+        return this.http.put<any>(this.actionUrl + `/${id}`, body, this.httpOptions).pipe(
+            tap((success: Response) => {
+                Swal.fire({
+                    title: "Success",
+                    text: "",
+                    icon: "success"
+                });
+            }),
+            catchError((error: any) => {
+                if (error.status !== 401) {
+                    Swal.fire({
+                        title: "Error",
+                        text: error.error,
+                        icon: "error"
+                    });
+                }
+                throw error;
+            })
+        );
     }
 }
 
@@ -150,12 +259,48 @@ export class CandidateService extends AbstractMasterRestService {
     }
 
     delete(id: string): Observable<any> {
-        return this.http.delete<any>(this.actionUrl + `/${id}`, this.httpOptions);
+        return this.http.delete<any>(this.actionUrl + `/${id}`, this.httpOptions).pipe(
+            tap((success: Response) => {
+                Swal.fire({
+                    title: "Success",
+                    text: "",
+                    icon: "success"
+                });
+            }),
+            catchError((error: any) => {
+                if (error.status !== 401) {
+                    Swal.fire({
+                        title: "Error",
+                        text: error.error,
+                        icon: "error"
+                    });
+                }
+                throw error;
+            })
+        );
     }
 
     postData(data: any): Observable<any> {
         const body = JSON.stringify(data);
-        return this.http.post<any>(this.actionUrl, body, this.httpOptions);
+        return this.http.post<any>(this.actionUrl, body, this.httpOptions).pipe(
+            tap((success: Response) => {
+                Swal.fire({
+                    title: "Success",
+                    text: "",
+                    icon: "success"
+                });
+            }),
+            catchError((error: any) => {
+                if (error.status !== 401) {
+                    Swal.fire({
+                        title: "Error",
+                        text: error.error,
+                        icon: "error"
+                    });
+                }
+                throw error;
+            })
+        );
     }
 
     updateStatus(id: string, status: number): Observable<any> {
@@ -205,17 +350,71 @@ export class PretestService extends AbstractMasterRestService {
     }
 
     delete(id: string): Observable<any> {
-        return this.http.delete<any>(this.actionUrl + `/${id}`, this.httpOptions);
+        return this.http.delete<any>(this.actionUrl + `/${id}`, this.httpOptions).pipe(
+            tap((success: Response) => {
+                Swal.fire({
+                    title: "Success",
+                    text: "",
+                    icon: "success"
+                });
+            }),
+            catchError((error: any) => {
+                if (error.status !== 401) {
+                    Swal.fire({
+                        title: "Error",
+                        text: error.error,
+                        icon: "error"
+                    });
+                }
+                throw error;
+            })
+        );
     }
 
     postData(data: any): Observable<any> {
         const body = JSON.stringify(data);
-        return this.http.post<any>(this.actionUrl, body, this.httpOptions);
+        return this.http.post<any>(this.actionUrl, body, this.httpOptions).pipe(
+            tap((success: Response) => {
+                Swal.fire({
+                    title: "Success",
+                    text: "",
+                    icon: "success"
+                });
+            }),
+            catchError((error: any) => {
+                if (error.status !== 401) {
+                    Swal.fire({
+                        title: "Error",
+                        text: error.error,
+                        icon: "error"
+                    });
+                }
+                throw error;
+            })
+        );
     }
 
     updateData(data: any, id: string): Observable<any> {
         const body = JSON.stringify(data);
-        return this.http.put<any>(this.actionUrl + `/${id}`, body, this.httpOptions);
+        return this.http.put<any>(this.actionUrl + `/${id}`, body, this.httpOptions).pipe(
+            tap((success: Response) => {
+                Swal.fire({
+                    title: "Success",
+                    text: "",
+                    icon: "success"
+                });
+            }),
+            catchError((error: any) => {
+                if (error.status !== 401) {
+                    Swal.fire({
+                        title: "Error",
+                        text: error.error,
+                        icon: "error"
+                    });
+                }
+                throw error;
+            })
+        );
     }
 }
 

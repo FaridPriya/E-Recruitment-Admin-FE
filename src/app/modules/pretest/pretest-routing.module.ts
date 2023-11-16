@@ -11,21 +11,21 @@ const routes: Routes = [
       path: '',
       component: PretestComponent,
       data: {
-        title: 'Pre-test'
+        title: 'Pretest'
       }
     },
     {
       path: 'create',
       component: PretestCreateComponent,
       data: {
-        title: 'Pre-test Create'
+        title: 'Pretest Create'
       }
     },
     {
       path: ':id',
       component: PretestDetailComponent,
       data: {
-        title: 'Pre-test Detail'
+        title: 'Pretest Detail'
       }
     }
   ];
