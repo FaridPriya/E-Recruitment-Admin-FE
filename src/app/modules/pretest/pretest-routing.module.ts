@@ -7,27 +7,35 @@ import { PretestDetailComponent } from './components/pretest-detail.component';
 
 
 const routes: Routes = [
-    {
-      path: '',
-      component: PretestComponent,
-      data: {
-        title: 'Pretest'
-      }
+  {
+    path: '',
+    data: {
+      title: 'Pretest',
     },
-    {
-      path: 'create',
-      component: PretestCreateComponent,
-      data: {
-        title: 'Pretest Create'
-      }
-    },
-    {
-      path: ':id',
-      component: PretestDetailComponent,
-      data: {
-        title: 'Pretest Detail'
-      }
+    children: [
+      {
+        path: '',
+        component: PretestComponent,
+        data: {
+          title: 'Pretest List'
+        }
+      },
+      {
+        path: 'create',
+        component: PretestCreateComponent,
+        data: {
+          title: 'Pretest Create'
+        }
+      },
+      {
+        path: ':id',
+        component: PretestDetailComponent,
+        data: {
+          title: 'Pretest Detail'
+        }
     }
+    ]
+  }
   ];
   
 @NgModule({

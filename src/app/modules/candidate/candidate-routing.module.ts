@@ -6,27 +6,35 @@ import { NgModule } from "@angular/core";
 
 
 const routes: Routes = [
-    {
-      path: '',
-      component: CandidateComponent,
-      data: {
-        title: 'Candidate'
-      }
+  {
+    path: '',
+    data: {
+      title: 'Candidate',
     },
-    {
-      path: 'create',
-      component: CandidateCreateComponent,
-      data: {
-        title: 'Candidate Create'
+    children: [
+      {
+        path: '',
+        component: CandidateComponent,
+        data: {
+          title: 'Candidate List'
+        }
+      },
+      {
+        path: 'create',
+        component: CandidateCreateComponent,
+        data: {
+          title: 'Candidate Create'
+        }
+      },
+      {
+        path: ':id',
+        component: CandidateDetailComponent,
+        data: {
+          title: 'Candidate Detail'
+        }
       }
-    },
-    {
-      path: ':id',
-      component: CandidateDetailComponent,
-      data: {
-        title: 'Candidate Detail'
-      }
-    }
+    ]
+  }
   ];
   
 @NgModule({

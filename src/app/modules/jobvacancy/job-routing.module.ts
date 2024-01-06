@@ -6,27 +6,35 @@ import { NgModule } from "@angular/core";
 
 
 const routes: Routes = [
-    {
-      path: '',
-      component: JobListComponent,
-      data: {
-        title: 'Job Vacancy'
-      }
+  {
+    path: '',
+    data: {
+      title: 'Job Vacancy',
     },
-    {
-      path: 'create',
-      component: JobCreateComponent,
-      data: {
-        title: 'Job Vacancy Create'
+    children: [
+      {
+        path: '',
+        component: JobListComponent,
+        data: {
+          title: 'Job Vacancy List'
+        }
+      },
+      {
+        path: 'create',
+        component: JobCreateComponent,
+        data: {
+          title: 'Job Vacancy Create'
+        }
+      },
+      {
+        path: ':id',
+        component: JobDetailComponent,
+        data: {
+          title: 'Job Vacancy Detail'
+        }
       }
-    },
-    {
-      path: ':id',
-      component: JobDetailComponent,
-      data: {
-        title: 'Job Vacancy Detail'
-      }
-    }
+    ]
+  }
   ];
   
 @NgModule({

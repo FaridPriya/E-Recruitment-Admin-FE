@@ -6,27 +6,35 @@ import { NgModule } from "@angular/core";
 
 
 const routes: Routes = [
-    {
-      path: '',
-      component: RequirementComponent,
-      data: {
-        title: 'Requirement'
-      }
+  {
+    path: '',
+    data: {
+      title: 'Requirement',
     },
-    {
-      path: 'create',
-      component: RequirementCreateComponent,
-      data: {
-        title: 'Requirement Create'
+    children: [
+      {
+        path: '',
+        component: RequirementComponent,
+        data: {
+          title: 'Requirement List'
+        }
+      },
+      {
+        path: 'create',
+        component: RequirementCreateComponent,
+        data: {
+          title: 'Requirement Create'
+        }
+      },
+      {
+        path: ':id',
+        component: RequirementDetailComponent,
+        data: {
+          title: 'Requirement Detail'
+        }
       }
-    },
-    {
-      path: ':id',
-      component: RequirementDetailComponent,
-      data: {
-        title: 'Requirement Detail'
-      }
-    }
+    ]
+  }
   ];
   
 @NgModule({
